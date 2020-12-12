@@ -90,6 +90,7 @@ defmodule Pbkdf2.Base do
       Keyword.get(opts, :rounds, Application.get_env(:pbkdf2_elixir, :rounds, 160_000)),
       Keyword.get(opts, :format, :modular),
       case opts[:digest] do
+        :sha -> {:sha, opts[:length] || 16}
         :sha256 -> {:sha256, opts[:length] || 32}
         _ -> {:sha512, opts[:length] || 64}
       end
